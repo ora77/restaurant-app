@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { data } from "./data/restaurants";
+import { Homepage } from "./pages/Homepage";
+import { Details } from "./pages/Details";
+import { Favorites } from "./pages/Favorites";
+import { Header } from "./components/Header";
+import { RestaurantsContext } from "./contexts/RestaurantsContext";
 
-function App() {
+const App = () => {
+  const restaurants = data;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <RestaurantsContext.Provider value={{ restaurants: restaurants }}>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/datails/:id" element={<Details />} />
+          <Route path="/favorites" element={<Favorites />} />
+        </Routes>
+      </Router>
+      </RestaurantsContext.Provider>
     </div>
   );
-}
+};
 
 export default App;
