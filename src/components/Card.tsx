@@ -1,7 +1,6 @@
 import React from "react";
 import { Restaurant } from "../models/RestaurantType";
 import "./Card.css"
-import { useParams } from "react-router-dom";
 
 type CardProps = {
   card: Restaurant;

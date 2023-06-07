@@ -7,3 +7,8 @@
     justify-content: flex-start;
     
 }
+
+.link-card{
+    text-decoration: none;
+    color: black;
+}
