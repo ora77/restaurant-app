@@ -1,0 +1,15 @@
+.remove-from-fav-icon{
+    color: gold;
+    height: 30px;
+    width: 30px;
+    display: block;
+    margin: auto;
+}
+
+.add-to-fav-icon{
+    color: #D3D3D3;
+    height: 30px;
+    width: 30px;
+    display: block;
+    margin: auto;
+    

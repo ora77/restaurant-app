@@ -6,17 +6,16 @@ import { Card } from "./Card";
 import { Link, useParams } from "react-router-dom";
 import { Details } from "../pages/Details";
 import { useFavoritesContext } from "../contexts/FavoritesContext";
-import { FaRegStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+import "./Icons.css";
 
 type RestaurantsListProps = {
   restaurants: Restaurant[];
 };
 
 export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
-  const { addToFavorites } = useFavoritesContext();
-  const { favorites } = useFavoritesContext();
-
-  console.log(favorites);
+  const { favorites, addToFavorites, deleteFromFavorites } =
+    useFavoritesContext();
 
   return (
     <main className="restaurants-list">
@@ -25,13 +24,13 @@ export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
           <Link className="link-card" to={`/details/${x.id}`}>
             <Card card={x} />
           </Link>
-          <FaRegStar onClick={() => addToFavorites(x.id)} />
           {favorites.includes(x.id) ? (
-            <button>Delete</button>
+            <FaStar className="remove-from-fav-icon" onClick={() => deleteFromFavorites(x.id)}/>
           ) : (
-            <button onClick={() => addToFavorites(x.id)}>
-              Add to favorites
-            </button>
+            <FaStar
+              className="add-to-fav-icon"
+              onClick={() => addToFavorites(x.id)}
+            />
           )}
         </div>
       ))}

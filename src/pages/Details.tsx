@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { RestaurantsContext } from "../contexts/RestaurantsContext";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import "./Details.css"
+import "./Details.css";
+import { useFavoritesContext } from "../contexts/FavoritesContext";
 
 export const Details = () => {
   const { restaurants } = useContext(RestaurantsContext);
+  const { favorites, addToFavorites, deleteFromFavorites } =
+    useFavoritesContext();
 
   type IdParams = {
     id: string;
@@ -16,7 +18,15 @@ export const Details = () => {
     <main className="details">
       <h2>{restaurants[+id].name}</h2>
       <p>{restaurants[+id].description_long}</p>
-      <button>Add to favorites</button>
+      {favorites.includes(restaurants[+id].id) ? (
+        <button onClick={() => deleteFromFavorites(restaurants[+id].id)}>
+          Remove from favorites
+        </button>
+      ) : (
+        <button onClick={() => addToFavorites(restaurants[+id].id)}>
+          Add to favorites
+        </button>
+      )}
       <h2>Menu</h2>
       <h4>Entrées</h4>
       <ul className="details__menu-list">
