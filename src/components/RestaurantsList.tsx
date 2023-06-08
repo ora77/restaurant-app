@@ -6,6 +6,7 @@ import { Card } from "./Card";
 import { Link, useParams } from "react-router-dom";
 import { Details } from "../pages/Details";
 import { useFavoritesContext } from "../contexts/FavoritesContext";
+import { FaRegStar } from "react-icons/fa";
 
 type RestaurantsListProps = {
   restaurants: Restaurant[];
@@ -13,6 +14,10 @@ type RestaurantsListProps = {
 
 export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
   const { addToFavorites } = useFavoritesContext();
+  const { favorites } = useFavoritesContext();
+
+  console.log(favorites);
+
   return (
     <main className="restaurants-list">
       {restaurants.map((x) => (
@@ -20,7 +25,14 @@ export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
           <Link className="link-card" to={`/details/${x.id}`}>
             <Card card={x} />
           </Link>
-          <button onClick={() => addToFavorites(x.id)}>Add to favorites</button>
+          <FaRegStar onClick={() => addToFavorites(x.id)} />
+          {favorites.includes(x.id) ? (
+            <button>Delete</button>
+          ) : (
+            <button onClick={() => addToFavorites(x.id)}>
+              Add to favorites
+            </button>
+          )}
         </div>
       ))}
     </main>

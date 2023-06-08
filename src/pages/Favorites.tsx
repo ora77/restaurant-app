@@ -6,13 +6,10 @@ import { Restaurant } from "../models/RestaurantType";
 
 export const Favorites = () => {
   const { restaurants } = useContext(RestaurantsContext);
-  const { getFavorites } = useFavoritesContext();
-  const favoritesId = getFavorites();
-  console.log(favoritesId);
+  const { favorites } = useFavoritesContext();
   const favoriteRestaurants = restaurants.filter((x) =>
-    favoritesId.includes(x.id)
+    favorites.includes(x.id)
   );
-  console.log(favoriteRestaurants);
 
   // Récupérer la liste des restaurants complètes
   // Récupérer la liste des ids des favoris (Favoris context + local storage)

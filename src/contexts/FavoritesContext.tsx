@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 type ContextProps = {
   children: React.ReactNode;
@@ -6,7 +6,7 @@ type ContextProps = {
 
 type FavoriteContextType = {
   addToFavorites: (restaurantId: number) => void;
-  getFavorites: () => number[];
+  favorites: number[];
 };
 
 const FavoritesContext = createContext<FavoriteContextType>(
@@ -15,30 +15,31 @@ const FavoritesContext = createContext<FavoriteContextType>(
 
 export const useFavoritesContext = () => useContext(FavoritesContext);
 
-const favorites: number[] = [];
-
 export const FavoritesContextProvider = ({ children }: ContextProps) => {
+  // favorites c'est une variable d'état
+  const [favorites, setFavorites] = useState<number[]>([]);
+  
   const addToFavorites = (restaurantId: number) => {
-    if (localStorage.getItem("favorites") !== null) {
-      favorites.length = 0;
-      favorites.push(...JSON.parse(localStorage.getItem("favorites") || ""));
-    }
-
-    favorites.push(restaurantId);
+    const clone = [...favorites];
+    clone.push(restaurantId);
+    setFavorites(clone);
     localStorage.setItem("favorites", JSON.stringify(favorites));
   };
 
   const getFavorites = () => {
-    if (localStorage.getItem("favorites") !== null) {
-      return JSON.parse(localStorage.getItem("favorites") || "");
+    const currFavs = localStorage.getItem("favorites");
+    if (currFavs != null) {
+      setFavorites(JSON.parse(currFavs));
     }
   };
+
+  useEffect(() => getFavorites(), []);
 
   return (
     <FavoritesContext.Provider
       value={{
         addToFavorites,
-        getFavorites,
+        favorites,
       }}
     >
       {children}
