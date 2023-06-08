@@ -16,6 +16,7 @@ export const Details = () => {
     <main className="details">
       <h2>{restaurants[+id].name}</h2>
       <p>{restaurants[+id].description_long}</p>
+      <button>Add to favorites</button>
       <h2>Menu</h2>
       <h4>Entrées</h4>
       <ul className="details__menu-list">
