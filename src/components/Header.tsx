@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 
 export const Header = () => {
+  // Amazing app name !!
   return (
     <div className="header">
       <Link to="/">
