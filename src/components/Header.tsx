@@ -8,7 +8,7 @@ export const Header = () => {
       <h1 className="">Logo/ Nom de l'App</h1>
 
       <Link to="favorites">
-        <button className="header__btn">Mes favories</button>
+        <button className="header__btn">Mes favoris</button>
       </Link>
     </div>
   );

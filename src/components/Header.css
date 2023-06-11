@@ -6,4 +6,17 @@
   align-items: center;
 }
 
+.header__btn {
+  font-size: 1em;
+  background:#6b909e;
+  color: #fff;
+  border-radius: 25px;
+  border: #6b909e;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.header__btn:hover{
+  background: #245263;
+}
 

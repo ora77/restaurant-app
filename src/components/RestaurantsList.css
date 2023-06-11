@@ -1,14 +1,41 @@
-.restaurants-list{
-    width: 90%;
-    margin: auto;
-    border: 1px solid black;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    
+.restaurants-list {
+  background: white;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 3em;
+  border-radius: 30px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
 }
 
-.link-card{
-    text-decoration: none;
-    color: black;
+.card {
+  border-radius: 25px;
+  background: white;
+}
+
+.link {
+  border-radius: 0;
+  text-decoration: none;
+  color: black;
+}
+
+.remove-from-fav-icon {
+  background: white;
+  cursor: pointer;
+  color: gold;
+  height: 30px;
+  width: 30px;
+  display: block;
+  margin: auto;
+}
+
+.add-to-fav-icon {
+  background: white;
+  cursor: pointer;
+  color: #d3d3d3;
+  height: 30px;
+  width: 30px;
+  display: block;
+  margin: auto;
 }

@@ -1,25 +1,49 @@
 .details {
   width: 90%;
   margin: auto;
+  margin-bottom: 3em;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 30px;
-  background-color: lavenderblush;
+  background: white;
 }
 
-h4 {
+.details button {
+  font-size: 1em;
+  background: #6b909e;
+  color: #fff;
+  border-radius: 25px;
+  border: #6b909e;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.details button:hover {
+  background: #245263;
+}
+.details h2 {
+  background: white;
+}
+
+.details p {
+  background: white;
+}
+
+.details h4 {
+  background: white;
   margin: 1%;
 }
 
 .details__menu-list {
+  background: white;
   list-style: none;
   padding-left: 0;
   margin: 0%;
 }
 
 .details__menu-list li {
-  background-color: #00bfff;
+  background-color: #ccc;
   list-style-type: none;
   width: 26em;
   height: 2em;

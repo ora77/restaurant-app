@@ -14,7 +14,7 @@ const App = () => {
   const restaurants = data;
 
   return (
-    <div>
+    <div className="main">
       <FavoritesContextProvider>
         <RestaurantsContext.Provider value={{ restaurants: restaurants }}>
           <Router>

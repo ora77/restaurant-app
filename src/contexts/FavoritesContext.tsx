@@ -39,17 +39,19 @@ export const FavoritesContextProvider = ({ children }: ContextProps) => {
   const deleteFromFavorites = (restaurantId: number) => {
     const clone = [...favorites];
     setFavorites(clone.filter((x) => x !== restaurantId));
-     localStorage.setItem("favorites", JSON.stringify(clone)); 
+    /* setFavorites((prev) => prev.filter(x => x !== restaurantId)); */
+    localStorage.setItem(
+      "favorites",
+      JSON.stringify(clone.filter((x) => x !== restaurantId))
+    );
   };
-
-  
 
   return (
     <FavoritesContext.Provider
       value={{
         addToFavorites,
         favorites,
-        deleteFromFavorites
+        deleteFromFavorites,
       }}
     >
       {children}
