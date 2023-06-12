@@ -12,7 +12,7 @@ type RestaurantsListProps = {
 };
 
 export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
-  const { favorites, addToFavorites, deleteFromFavorites } =
+  const { favorites, addToFavorites } =
     useFavoritesContext();
   const [modal, setModal] = useState(false);
   const [restaurantId, setRestaurantId] = useState(0);

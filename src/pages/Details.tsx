@@ -7,13 +7,16 @@ import { Modal } from "../components/Modal";
 
 export const Details = () => {
   const { restaurants } = useContext(RestaurantsContext);
-  const { favorites, addToFavorites, deleteFromFavorites } =
-    useFavoritesContext();
+  const { favorites, addToFavorites } = useFavoritesContext();
   const [modal, setModal] = useState(false);
+
+  // use effect recuperer le restaurant en pariculier et supprimer l'idParams
 
   type IdParams = {
     id: string;
   };
+
+  
 
   const { id } = useParams() as IdParams;
   return (
@@ -21,13 +24,7 @@ export const Details = () => {
       <h2>{restaurants[+id].name}</h2>
       <p>{restaurants[+id].description_long}</p>
       {favorites.includes(restaurants[+id].id) ? (
-        <button
-          onClick={
-            () => setModal(true) /* deleteFromFavorites(restaurants[+id].id) */
-          }
-        >
-          Retirer des favoris
-        </button>
+        <button onClick={() => setModal(true)}>Retirer des favoris</button>
       ) : (
         <button onClick={() => addToFavorites(restaurants[+id].id)}>
           Ajouter aux favoris
