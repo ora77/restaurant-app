@@ -10,50 +10,46 @@ export const Details = () => {
   const { favorites, addToFavorites } = useFavoritesContext();
   const [modal, setModal] = useState(false);
 
-  // use effect recuperer le restaurant en pariculier et supprimer l'idParams
+  const { id } = useParams();
+  if (id === undefined) return null;
 
-  type IdParams = {
-    id: string;
-  };
+  const restaurant = restaurants[+id];
 
-  
-
-  const { id } = useParams() as IdParams;
   return (
     <main className="details">
-      <h2>{restaurants[+id].name}</h2>
-      <p>{restaurants[+id].description_long}</p>
-      {favorites.includes(restaurants[+id].id) ? (
+      <h2>{restaurant.name}</h2>
+      <p>{restaurant.description_long}</p>
+      {favorites.includes(restaurant.id) ? (
         <button onClick={() => setModal(true)}>Retirer des favoris</button>
       ) : (
-        <button onClick={() => addToFavorites(restaurants[+id].id)}>
+        <button onClick={() => addToFavorites(restaurant.id)}>
           Ajouter aux favoris
         </button>
       )}
       <h2>Menu</h2>
       <h4>Entrées</h4>
       <ul className="details__menu-list">
-        {restaurants[+id].menu.entrees.map((x, i) => (
+        {restaurant.menu.entrees.map((x, i) => (
           <li key={"entree_" + i}>{x}</li>
         ))}
       </ul>
       <h4>Plats</h4>
       <ul className="details__menu-list">
-        {restaurants[+id].menu.dishes.map((x, i) => (
+        {restaurant.menu.dishes.map((x, i) => (
           <li key={"dish_" + i}>{x}</li>
         ))}
       </ul>
       <h4>Desserts</h4>
       <ul className="details__menu-list">
-        {restaurants[+id].menu.deserts.map((x, i) => (
+        {restaurant.menu.deserts.map((x, i) => (
           <li key={"dessert_" + i}>{x}</li>
         ))}
       </ul>
       <Modal
         show={modal}
         handleClose={() => setModal(false)}
-        restaurantId={restaurants[+id].id}
-        restaurantName={restaurants[+id].name}
+        restaurantId={restaurant.id}
+        restaurantName={restaurant.name}
       />
     </main>
   );
