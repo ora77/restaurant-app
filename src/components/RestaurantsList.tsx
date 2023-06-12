@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./RestaurantsList.css";
-import { RestaurantsContext } from "../contexts/RestaurantsContext";
 import { Restaurant } from "../models/RestaurantType";
 import { Card } from "./Card";
-import { Link, useParams } from "react-router-dom";
-import { Details } from "../pages/Details";
+import { Link } from "react-router-dom";
 import { useFavoritesContext } from "../contexts/FavoritesContext";
 import { FaStar } from "react-icons/fa";
+import { Modal } from "./Modal";
 
 type RestaurantsListProps = {
   restaurants: Restaurant[];
@@ -15,27 +14,42 @@ type RestaurantsListProps = {
 export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
   const { favorites, addToFavorites, deleteFromFavorites } =
     useFavoritesContext();
+  const [modal, setModal] = useState(false);
+  const [restaurantId, setRestaurantId] = useState(0);
+  const [RestaurantName, setRestaurantName] = useState("");
 
   return (
-    <main className="restaurants-list">
-      {restaurants.map((x) => (
-        <div className="card" key={x.id}>
-          <Link className="link" to={`/details/${x.id}`}>
-            <Card card={x} />
-          </Link>
-          {favorites.includes(x.id) ? (
-            <FaStar
-              className="remove-from-fav-icon"
-              onClick={() => deleteFromFavorites(x.id)}
-            />
-          ) : (
-            <FaStar
-              className="add-to-fav-icon"
-              onClick={() => addToFavorites(x.id)}
-            />
-          )}
-        </div>
-      ))}
-    </main>
+    <>
+      <main className="restaurants-list">
+        {restaurants.map((x) => (
+          <div className="card" key={x.id}>
+            <Link className="link" to={`/details/${x.id}`}>
+              <Card card={x} />
+            </Link>
+            {favorites.includes(x.id) ? (
+              <FaStar
+                className="remove-from-fav-icon"
+                onClick={() => {
+                  setModal(true);
+                  setRestaurantId(x.id);
+                  setRestaurantName(x.name);
+                }}
+              />
+            ) : (
+              <FaStar
+                className="add-to-fav-icon"
+                onClick={() => addToFavorites(x.id)}
+              />
+            )}
+          </div>
+        ))}
+      </main>
+      <Modal
+        show={modal}
+        handleClose={() => setModal(false)}
+        restaurantId={restaurantId}
+        restaurantName={RestaurantName}
+      />
+    </>
   );
 };

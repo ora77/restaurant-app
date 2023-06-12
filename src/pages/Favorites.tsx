@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { RestaurantsList } from "../components/RestaurantsList";
 import { RestaurantsContext } from "../contexts/RestaurantsContext";
 import { useFavoritesContext } from "../contexts/FavoritesContext";
-import { Restaurant } from "../models/RestaurantType";
 
 export const Favorites = () => {
   const { restaurants } = useContext(RestaurantsContext);
