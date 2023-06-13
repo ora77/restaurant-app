@@ -5,9 +5,11 @@ type ContextProps = {
 };
 
 type FavoriteContextType = {
-  addToFavorites: (restaurantId: number) => void;
   favorites: number[];
+  addToFavorites: (restaurantId: number) => void;
   deleteFromFavorites: (restaurentId: number) => void;
+  modal: boolean;
+  handleModal: (boolean: boolean) => void;
 };
 
 const FavoritesContext = createContext<FavoriteContextType>(
@@ -19,6 +21,7 @@ export const useFavoritesContext = () => useContext(FavoritesContext);
 export const FavoritesContextProvider = ({ children }: ContextProps) => {
   // favorites c'est une variable d'état
   const [favorites, setFavorites] = useState<number[]>([]);
+  const [modal, setModal] = useState(false);
 
   const addToFavorites = (restaurantId: number) => {
     const clone = [...favorites];
@@ -46,12 +49,18 @@ export const FavoritesContextProvider = ({ children }: ContextProps) => {
     );
   };
 
+  const handleModal = (boolean: boolean) => {
+    setModal(boolean);
+  };
+
   return (
     <FavoritesContext.Provider
       value={{
         addToFavorites,
         favorites,
         deleteFromFavorites,
+        modal,
+        handleModal,
       }}
     >
       {children}

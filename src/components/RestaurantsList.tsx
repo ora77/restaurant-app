@@ -12,11 +12,10 @@ type RestaurantsListProps = {
 };
 
 export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
-  const { favorites, addToFavorites } =
+  const { favorites, modal, addToFavorites, handleModal } =
     useFavoritesContext();
-  const [modal, setModal] = useState(false);
-  const [restaurantId, setRestaurantId] = useState(0);
-  const [RestaurantName, setRestaurantName] = useState("");
+
+  const [restaurant, setRestaurant] = useState<Restaurant>(restaurants[0]);
 
   return (
     <>
@@ -30,9 +29,8 @@ export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
               <FaStar
                 className="remove-from-fav-icon"
                 onClick={() => {
-                  setModal(true);
-                  setRestaurantId(x.id);
-                  setRestaurantName(x.name);
+                  handleModal(true);
+                  setRestaurant(x);
                 }}
               />
             ) : (
@@ -44,12 +42,7 @@ export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
           </div>
         ))}
       </main>
-      <Modal
-        show={modal}
-        handleClose={() => setModal(false)}
-        restaurantId={restaurantId}
-        restaurantName={RestaurantName}
-      />
+      {<Modal show={modal} restaurant={restaurant} />}
     </>
   );
 };

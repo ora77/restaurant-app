@@ -7,8 +7,8 @@ import { Modal } from "../components/Modal";
 
 export const Details = () => {
   const { restaurants } = useContext(RestaurantsContext);
-  const { favorites, addToFavorites } = useFavoritesContext();
-  const [modal, setModal] = useState(false);
+  const { favorites, addToFavorites, modal, handleModal } =
+    useFavoritesContext();
 
   const { id } = useParams();
   if (id === undefined) return null;
@@ -18,9 +18,10 @@ export const Details = () => {
   return (
     <main className="details">
       <h2>{restaurant.name}</h2>
+      <img src={restaurant.img}/>
       <p>{restaurant.description_long}</p>
       {favorites.includes(restaurant.id) ? (
-        <button onClick={() => setModal(true)}>Retirer des favoris</button>
+        <button onClick={() => handleModal(true)}>Retirer des favoris</button>
       ) : (
         <button onClick={() => addToFavorites(restaurant.id)}>
           Ajouter aux favoris
@@ -45,12 +46,7 @@ export const Details = () => {
           <li key={"dessert_" + i}>{x}</li>
         ))}
       </ul>
-      <Modal
-        show={modal}
-        handleClose={() => setModal(false)}
-        restaurantId={restaurant.id}
-        restaurantName={restaurant.name}
-      />
+      <Modal show={modal} restaurant={restaurant} />
     </main>
   );
 };

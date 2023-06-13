@@ -1,37 +1,31 @@
 import React from "react";
 import "./Modal.css";
 import { useFavoritesContext } from "../contexts/FavoritesContext";
+import { Restaurant } from "../models/RestaurantType";
 
 type ModalProps = {
   show: boolean;
-  handleClose: () => void;
-  restaurantId: number;
-  restaurantName: string;
+  restaurant: Restaurant;
 };
 
-export const Modal = ({
-  show,
-  handleClose,
-  restaurantId,
-  restaurantName,
-}: ModalProps) => {
-  const { deleteFromFavorites } = useFavoritesContext();
+export const Modal = ({ show, restaurant }: ModalProps) => {
+  const { deleteFromFavorites, handleModal } = useFavoritesContext();
   if (!show) return null;
   return (
     <div className="modal">
       <section className="modal-main">
-        <p className="modal-main-prompt">{`Retirer "${restaurantName}" des favoris?`}</p>
+        <p className="modal-main-prompt">{`Retirer "${restaurant.name}" des favoris?`}</p>
         <div className="modal-main-actions">
           <button
             className="modal-main-btn"
             onClick={() => {
-              deleteFromFavorites(restaurantId);
-              handleClose();
+              deleteFromFavorites(restaurant.id);
+              handleModal(false)
             }}
           >
             Confirmer
           </button>
-          <button className="modal-main-btn" onClick={() => handleClose()}>
+          <button className="modal-main-btn" onClick={() => handleModal(false)}>
             Annuler
           </button>
         </div>

@@ -6,6 +6,11 @@
   align-items: center;
 }
 
+.header h1{
+  text-decoration: none;
+  color: black;
+}
+
 .header__btn {
   font-size: 1em;
   background:#6b909e;

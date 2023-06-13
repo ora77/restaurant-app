@@ -1,6 +1,7 @@
 import React from "react";
 import { Restaurant } from "../models/RestaurantType";
 import "./Card.css";
+import { Modal } from "./Modal";
 
 type CardProps = {
   card: Restaurant;
