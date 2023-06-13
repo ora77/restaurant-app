@@ -41,12 +41,10 @@ export const FavoritesContextProvider = ({ children }: ContextProps) => {
 
   const deleteFromFavorites = (restaurantId: number) => {
     const clone = [...favorites];
-    setFavorites(clone.filter((x) => x !== restaurantId));
+    const newFavs = clone.filter((x) => x !== restaurantId);
+    setFavorites(newFavs);
     /* setFavorites((prev) => prev.filter(x => x !== restaurantId)); */
-    localStorage.setItem(
-      "favorites",
-      JSON.stringify(clone.filter((x) => x !== restaurantId))
-    );
+    localStorage.setItem("favorites", JSON.stringify(newFavs));
   };
 
   const handleModal = (boolean: boolean) => {

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { RestaurantsList } from "../components/RestaurantsList";
-import { RestaurantsContext } from "../contexts/RestaurantsContext";
-import { useFavoritesContext } from "../contexts/FavoritesContext";
+import { RestaurantsList } from "../../components/RestaurantsList";
+import { RestaurantsContext } from "../../contexts/RestaurantsContext";
+import { useFavoritesContext } from "../../contexts/FavoritesContext";
 
 export const Favorites = () => {
   const { restaurants } = useContext(RestaurantsContext);

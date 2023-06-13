@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
-import { RestaurantsContext } from "../contexts/RestaurantsContext";
+import { RestaurantsContext } from "../../contexts/RestaurantsContext";
 import "./Details.css";
-import { useFavoritesContext } from "../contexts/FavoritesContext";
-import { Modal } from "../components/Modal";
+import { useFavoritesContext } from "../../contexts/FavoritesContext";
+import { Modal } from "../../components/Modal";
 
 export const Details = () => {
   const { restaurants } = useContext(RestaurantsContext);
@@ -18,7 +18,7 @@ export const Details = () => {
   return (
     <main className="details">
       <h2>{restaurant.name}</h2>
-      <img src={restaurant.img}/>
+      <img src={restaurant.img} />
       <p>{restaurant.description_long}</p>
       {favorites.includes(restaurant.id) ? (
         <button onClick={() => handleModal(true)}>Retirer des favoris</button>

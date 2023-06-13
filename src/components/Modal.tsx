@@ -20,7 +20,7 @@ export const Modal = ({ show, restaurant }: ModalProps) => {
             className="modal-main-btn"
             onClick={() => {
               deleteFromFavorites(restaurant.id);
-              handleModal(false)
+              handleModal(false);
             }}
           >
             Confirmer

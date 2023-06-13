@@ -42,7 +42,7 @@ export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
           </div>
         ))}
       </main>
-      {<Modal show={modal} restaurant={restaurant} />}
+      <Modal show={modal} restaurant={restaurant} />
     </>
   );
 };

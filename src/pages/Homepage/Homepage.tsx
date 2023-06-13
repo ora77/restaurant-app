@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { RestaurantsList } from "../components/RestaurantsList";
-import { RestaurantsContext } from "../contexts/RestaurantsContext";
+import { RestaurantsList } from "../../components/RestaurantsList";
+import { RestaurantsContext } from "../../contexts/RestaurantsContext";
 
 export const Homepage = () => {
   const { restaurants } = useContext(RestaurantsContext);
