@@ -43,6 +43,7 @@ export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
         ))}
       </main>
       <Modal show={modal} restaurant={restaurant} />
+      {/* modal appelé une seule fois dans le favorite context sans props? et on recupere les données de chaque restaurants avec les id de favorites */}
     </>
   );
 };

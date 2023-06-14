@@ -29,6 +29,10 @@
   margin: auto;
 }
 
+.remove-from-fav-icon:hover {
+  color: #d3d3d3;
+}
+
 .add-to-fav-icon {
   background: white;
   cursor: pointer;
@@ -37,4 +41,8 @@
   width: 30px;
   display: block;
   margin: auto;
+}
+
+.add-to-fav-icon:hover {
+  color: gold;
 }

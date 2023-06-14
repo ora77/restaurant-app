@@ -18,6 +18,7 @@ export const Details = () => {
   return (
     <main className="details">
       <h2>{restaurant.name}</h2>
+      <p>{restaurant.address}</p>
       <img src={restaurant.img} />
       <p>{restaurant.description_long}</p>
       {favorites.includes(restaurant.id) ? (
