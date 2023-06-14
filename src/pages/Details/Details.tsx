@@ -32,6 +32,7 @@ export const Details = () => {
           Ajouter aux favoris
         </button>
       )}
+      {/* This could be a h3, would be more correct ;) */}
       <h2>Menu</h2>
       <h4>Entrées</h4>
       <ul className="details__menu-list">

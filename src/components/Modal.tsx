@@ -1,3 +1,4 @@
+// Remove unused import 
 import React, { useContext, useEffect, useState } from "react";
 import "./Modal.css";
 import { useFavoritesContext } from "../contexts/FavoritesContext";
