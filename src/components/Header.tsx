@@ -6,7 +6,7 @@ export const Header = () => {
   return (
     <div className="header">
       <Link to="/">
-        <h1 className="">Logo/ Nom de l'App</h1>
+        <h1 className="">HTMeaL</h1>
       </Link>
 
       <Link to="favorites">
