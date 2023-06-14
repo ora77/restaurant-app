@@ -1,21 +1,17 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import "./RestaurantsList.css";
 import { Restaurant } from "../models/RestaurantType";
 import { Card } from "./Card";
 import { Link } from "react-router-dom";
 import { useFavoritesContext } from "../contexts/FavoritesContext";
 import { FaStar } from "react-icons/fa";
-import { Modal } from "./Modal";
 
 type RestaurantsListProps = {
   restaurants: Restaurant[];
 };
 
 export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
-  const { favorites, modal, addToFavorites, handleModal } =
-    useFavoritesContext();
-
-  const [restaurant, setRestaurant] = useState<Restaurant>(restaurants[0]);
+  const { favorites, addToFavorites, setSelectedFavId } = useFavoritesContext();
 
   return (
     <>
@@ -29,8 +25,7 @@ export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
               <FaStar
                 className="remove-from-fav-icon"
                 onClick={() => {
-                  handleModal(true);
-                  setRestaurant(x);
+                  setSelectedFavId(x.id);
                 }}
               />
             ) : (
@@ -42,8 +37,6 @@ export const RestaurantsList = ({ restaurants }: RestaurantsListProps) => {
           </div>
         ))}
       </main>
-      <Modal show={modal} restaurant={restaurant} />
-      {/* modal appelé une seule fois dans le favorite context sans props? et on recupere les données de chaque restaurants avec les id de favorites */}
     </>
   );
 };

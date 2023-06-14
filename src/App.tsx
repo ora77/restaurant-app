@@ -14,8 +14,8 @@ const App = () => {
 
   return (
     <div className="main">
-      <FavoritesContextProvider>
-        <RestaurantsContext.Provider value={{ restaurants: restaurants }}>
+      <RestaurantsContext.Provider value={{ restaurants: restaurants }}>
+        <FavoritesContextProvider>
           <Router>
             <Header />
             <Routes>
@@ -24,8 +24,8 @@ const App = () => {
               <Route path="/favorites" element={<Favorites />} />
             </Routes>
           </Router>
-        </RestaurantsContext.Provider>
-      </FavoritesContextProvider>
+        </FavoritesContextProvider>
+      </RestaurantsContext.Provider>
     </div>
   );
 };

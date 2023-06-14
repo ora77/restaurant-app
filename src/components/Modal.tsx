@@ -1,16 +1,13 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Modal.css";
 import { useFavoritesContext } from "../contexts/FavoritesContext";
 import { Restaurant } from "../models/RestaurantType";
 
-type ModalProps = {
-  show: boolean;
-  restaurant: Restaurant;
-};
+export const Modal = ({ restaurant }: { restaurant: Restaurant | null }) => {
+  const { deleteFromFavorites, setSelectedFavId } = useFavoritesContext();
 
-export const Modal = ({ show, restaurant }: ModalProps) => {
-  const { deleteFromFavorites, handleModal } = useFavoritesContext();
-  if (!show) return null;
+  if (restaurant == null) return null;
+
   return (
     <div className="modal">
       <section className="modal-main">
@@ -20,12 +17,15 @@ export const Modal = ({ show, restaurant }: ModalProps) => {
             className="modal-main-btn"
             onClick={() => {
               deleteFromFavorites(restaurant.id);
-              handleModal(false);
+              setSelectedFavId(null);
             }}
           >
             Confirmer
           </button>
-          <button className="modal-main-btn" onClick={() => handleModal(false)}>
+          <button
+            className="modal-main-btn"
+            onClick={() => setSelectedFavId(null)}
+          >
             Annuler
           </button>
         </div>

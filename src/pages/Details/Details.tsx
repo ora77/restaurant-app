@@ -3,12 +3,10 @@ import { useParams } from "react-router-dom";
 import { RestaurantsContext } from "../../contexts/RestaurantsContext";
 import "./Details.css";
 import { useFavoritesContext } from "../../contexts/FavoritesContext";
-import { Modal } from "../../components/Modal";
 
 export const Details = () => {
   const { restaurants } = useContext(RestaurantsContext);
-  const { favorites, addToFavorites, modal, handleModal } =
-    useFavoritesContext();
+  const { favorites, addToFavorites, setSelectedFavId } = useFavoritesContext();
 
   const { id } = useParams();
   if (id === undefined) return null;
@@ -22,7 +20,13 @@ export const Details = () => {
       <img src={restaurant.img} />
       <p>{restaurant.description_long}</p>
       {favorites.includes(restaurant.id) ? (
-        <button onClick={() => handleModal(true)}>Retirer des favoris</button>
+        <button
+          onClick={() => {
+            setSelectedFavId(restaurant.id);
+          }}
+        >
+          Retirer des favoris
+        </button>
       ) : (
         <button onClick={() => addToFavorites(restaurant.id)}>
           Ajouter aux favoris
@@ -47,7 +51,6 @@ export const Details = () => {
           <li key={"dessert_" + i}>{x}</li>
         ))}
       </ul>
-      <Modal show={modal} restaurant={restaurant} />
     </main>
   );
 };
